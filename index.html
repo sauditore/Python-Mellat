@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Python-mellat by sauditore</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Python-mellat</h1>
+        <h2>Iran Bank Mellat Python API</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/sauditore/Python-Mellat/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/sauditore/Python-Mellat/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/sauditore/Python-Mellat" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="welcome-to-bank-mellat-python-api" class="anchor" href="#welcome-to-bank-mellat-python-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to Bank Mellat Python API</h1>
+
+<p>This code will connect your web application to Iran Bank Mellat E-Payment Gatewy.</p>
+
+<h3>
+<a id="install-" class="anchor" href="#install-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install :</h3>
+
+<p>Just download zip or tar file and include it in your code!</p>
+
+<h3>
+<a id="supported-methods-" class="anchor" href="#supported-methods-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>supported methods :</h3>
+
+<p>bpPayRequest<br>
+bpVerifyRequest<br>
+bpSettleRequest<br>
+bpInquiryRequest<br>
+bpReversalRequest<br></p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage:</h3>
+
+<p>According to Bank Documents, you need to these steps : 
+<br>
+1- Get a payment ref by calling <code>bpPayRequest</code> and args<br>
+2- Redirect user with POST method to Bank page =&gt; <a href="http://123123.shaparak.ir/payment?RefId=">http://123123.shaparak.ir/payment?RefId=</a><br>
+3- User will return to your website after payment<br>
+4- Verify State by calling : <code>bpVerifyRequest</code><br>
+5- If Result is True and Res Code is 0, Then prepare for settle by <code>bpSettleRequest</code><br></p>
+
+<h2>
+<a id="more-info--bank-documentations" class="anchor" href="#more-info--bank-documentations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More info : Bank Documentations</h2>
+
+<p><br><br><br>
+Saeed Auditore  </p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
