@@ -1,5 +1,5 @@
 import datetime
-from SOAPpy import WSDL
+from suds.client import Client
 
 __author__ = 'Saeed Auditore info@auditore.org'
 name = 'Mellat API'
@@ -61,10 +61,8 @@ class BMLPaymentAPI(object):
             additional_data = ''
         local_date, local_time = self.__get_local_data__()
         try:
-            server = WSDL.Proxy(self.service_address)
-            server.methods['bpPayRequest'].namespace = self.namespace
-            rid = server.bpPayRequest(
-                terminalId=self.terminalId,
+            client = Client(self.service_address)
+            rid = client.service.bpPayRequest(terminalId=self.terminalId,
                 userName=self.userName,
                 userPassword=self.userPassword,
                 orderId=order_id,
@@ -91,9 +89,8 @@ class BMLPaymentAPI(object):
         @return: True, Ref Number
         """
         try:
-            server = WSDL.Proxy(self.service_address)
-            server.methods['bpVerifyRequest'].namespace = self.namespace
-            res = server.bpVerifyRequest(terminalId=self.terminalId,
+            client = Client(self.service_address)
+            res = client.service.bpVerifyRequest(terminalId=self.terminalId,
                                          userName=self.userName,
                                          userPassword=self.userPassword,
                                          orderId=order_id,
@@ -105,9 +102,8 @@ class BMLPaymentAPI(object):
 
     def settle_payment(self, order_id, ref_id):
         try:
-            server = WSDL.Proxy(self.service_address)
-            server.methods['bpSettleRequest'].namespace = self.namespace
-            res = server.bpSettleRequest(terminalId=self.terminalId,
+            client = Client(self.service_address)
+            res = client.service.bpSettleRequest(terminalId=self.terminalId,
                                          userName=self.userName,
                                          userPassword=self.userPassword,
                                          orderId=order_id,
@@ -123,9 +119,8 @@ class BMLPaymentAPI(object):
         if not isinstance(ref_id, long):
             raise Exception('Invalid ref_id. long type expected!')
         try:
-            server = WSDL.Proxy(self.service_address)
-            server.methods['bpInquiryRequest'].namespace = self.namespace
-            res = server.bpInquiryRequest(terminalId=self.terminalId,
+            client = Client(self.service_address)
+            res = client.service.bpInquiryRequest(terminalId=self.terminalId,
                                           userName=self.userName,
                                           userPassword=self.userPassword,
                                           orderId=order_id,
@@ -141,9 +136,8 @@ class BMLPaymentAPI(object):
         if not isinstance(ref_id, long):
             raise Exception('Invalid ref_id. long type expected!')
         try:
-            server = WSDL.Proxy(self.service_address)
-            server.methods['bpReversalRequest'].namespace = self.namespace
-            res = server.bpReversalRequest(terminalId=self.terminalId,
+            client = Client(self.service_address)
+            res = client.service.bpReversalRequest(terminalId=self.terminalId,
                                            userName=self.userName,
                                            userPassword=self.userPassword,
                                            orderId=order_id,
