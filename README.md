@@ -14,3 +14,5 @@ Help To improve the code :)
 
 Saeed Auditore
 saeed.auditore@gmail.com
+
+Thanx to [knot123](https://github.com/knot123) for his help.
