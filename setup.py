@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='PyMellat',
-    version='1.0.1',
+    version='1.0.3',
     packages=['PyMellat'],
     url='http://sauditore.github.io/Python-Mellat.',
     license='Apache',
