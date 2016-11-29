@@ -1,5 +1,6 @@
 import datetime
 from suds.client import Client
+from suds import WebFault
 
 __author__ = 'Saeed Auditore info@auditore.org'
 name = 'Mellat API'
@@ -75,11 +76,11 @@ class BMLPaymentAPI(object):
             if ',' in rid and rid.partition(',')[0] == '0':
                 return rid[2:]
             else:
-                print(rid)
                 return False
+        except WebFault as f:
+            return False, f.fault.faultstring
         except Exception as e:
-            print(e.message)
-            return False
+            return False, e.message
 
     def verify_payment(self, order_id, ref_id):
         """
@@ -97,6 +98,8 @@ class BMLPaymentAPI(object):
                                          saleOrderId=order_id,
                                          saleReferenceId=ref_id)
             return True, res
+        except WebFault as f:
+            return False, f.fault.faultstring
         except Exception as e:
             return False, e.message
 
@@ -110,6 +113,8 @@ class BMLPaymentAPI(object):
                                          saleOrderId=order_id,
                                          saleReferenceId=ref_id)
             return True, res
+        except WebFault as f:
+            return False, f.fault.faultstring
         except Exception as e:
             return False, e.message
 
@@ -127,6 +132,8 @@ class BMLPaymentAPI(object):
                                           saleOrderId=order_id,
                                           saleReferenceId=ref_id)
             return True, res
+        except WebFault as f:
+            return False, f.fault.faultstring
         except Exception as e:
             return False, e.message
 
@@ -144,6 +151,8 @@ class BMLPaymentAPI(object):
                                            saleOrderId=order_id,
                                            saleReferenceId=ref_id)
             return True, res
+        except WebFault as f:
+            return False, f.fault.faultstring
         except Exception as e:
             return False, e.message
 
