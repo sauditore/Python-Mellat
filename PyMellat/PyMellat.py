@@ -13,7 +13,7 @@ class BMLPaymentAPI(object):
         Bank Mellat Payment APIs
         @param username: terminal username
         @param password: terminal password
-        @param terminal_id: terminal id (must convert to long)
+        @param terminal_id: terminal id (must convert to int)
         @return: None
         """
         if username is None:
@@ -22,8 +22,8 @@ class BMLPaymentAPI(object):
             raise Exception('Password is empty')
         if terminal_id is None:
             raise Exception('Terminal ID is empty')
-        if not isinstance(terminal_id, long):
-            raise Exception('Invalid terminal_id type. long type expected!')
+        if not isinstance(terminal_id, int):
+            raise Exception('Invalid terminal_id type. int type expected!')
         self.userName = username
         self.userPassword = password
         self.terminalId = terminal_id
@@ -40,23 +40,23 @@ class BMLPaymentAPI(object):
     def request_pay_ref(self, order_id, price, call_back_address, additional_data=None):
         """
         Request a key for payment
-        @param order_id: Invoice Number or a unique long number
-        @param price: long price
+        @param order_id: Invoice Number or a unique int number
+        @param price: int price
         @param call_back_address: website callback handler
         @param additional_data: additional data to send. max 100 chars
         @return: True and Ref number to send to client
         """
-        if not isinstance(order_id, long):
-            raise Exception('Invalid order_id! long type expected')
-        if not isinstance(price, long):
-            raise Exception('Invalid price! long type expected!')
+        if not isinstance(order_id, int):
+            raise Exception('Invalid order_id! int type expected')
+        if not isinstance(price, int):
+            raise Exception('Invalid price! int type expected!')
         if not isinstance(call_back_address, str):
             raise Exception('Invalid call_back_address', 'str type expected')
         if additional_data is not None:
             if not isinstance(additional_data, str):
                 raise Exception('Invalid additional_data! str Type expected!')
             if len(additional_data) > 99:
-                raise Exception('additional_data is too long. max is 100 chars.')
+                raise Exception('additional_data is too int. max is 100 chars.')
         else:
             additional_data = ''
         local_date, local_time = self.__get_local_data__()
@@ -75,10 +75,10 @@ class BMLPaymentAPI(object):
             if ',' in rid:
                 return rid[2:]
             else:
-                print rid
+                print(rid)
                 return False
         except Exception as e:
-            print e.message
+            print(e.message)
             return False
 
     def verify_payment(self, order_id, ref_id):
@@ -114,10 +114,10 @@ class BMLPaymentAPI(object):
             return False, e.message
 
     def check_state(self, order_id, ref_id):
-        if not isinstance(order_id, long):
-            raise Exception('Invalid order_id. long type expected!')
-        if not isinstance(ref_id, long):
-            raise Exception('Invalid ref_id. long type expected!')
+        if not isinstance(order_id, int):
+            raise Exception('Invalid order_id. int type expected!')
+        if not isinstance(ref_id, int):
+            raise Exception('Invalid ref_id. int type expected!')
         try:
             client = Client(self.service_address)
             res = client.service.bpInquiryRequest(terminalId=self.terminalId,
@@ -131,10 +131,10 @@ class BMLPaymentAPI(object):
             return False, e.message
 
     def undo_payment(self, order_id, ref_id):
-        if not isinstance(order_id, long):
-            raise Exception('Invalid order_id. long type expected!')
-        if not isinstance(ref_id, long):
-            raise Exception('Invalid ref_id. long type expected!')
+        if not isinstance(order_id, int):
+            raise Exception('Invalid order_id. int type expected!')
+        if not isinstance(ref_id, int):
+            raise Exception('Invalid ref_id. int type expected!')
         try:
             client = Client(self.service_address)
             res = client.service.bpReversalRequest(terminalId=self.terminalId,
